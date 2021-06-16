@@ -1,3 +1,3 @@
 export class UpdateRoomDto {
-  name: string
+  name: string;
 }
