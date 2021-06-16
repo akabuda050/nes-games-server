@@ -29,10 +29,6 @@ export class RoomsController {
 
   @Post()
   async create(@Body() createRoomDto: CreateRoomDto) {
-    if (!createRoomDto.name) {
-      throw new BadRequestException('Room name should be provided!');
-    }
-
     this.roomsService.create(createRoomDto);
   }
 

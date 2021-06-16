@@ -22,9 +22,7 @@ export class RoomsService {
 
   update(id: string, updatedRoom: Room) {
     this.rooms = this.rooms.map((room) =>
-      // There is possibility to update id field if this is provided in equest body. 
-      // Let's re-assign it from original room to updatedRoom as well. TODO: Find another way.
-      room?.id === id ? { ...room, ...{ ...updatedRoom, id: room.id } } : room,
+      room?.id === id ? { ...room, ...updatedRoom } : room,
     );
   }
 
