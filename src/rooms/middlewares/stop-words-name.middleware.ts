@@ -1,13 +1,12 @@
 import {
   BadRequestException,
-  HttpException,
-  HttpStatus,
   Injectable,
   InternalServerErrorException,
   NestMiddleware,
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { readFile } from 'fs';
+import { handleError } from 'src/helpers/handle-errors';
 import { promisify } from 'util';
 const readFileAsync = promisify(readFile);
 
@@ -19,15 +18,16 @@ export class StopWordsNameMiddleware implements NestMiddleware {
         await readFileAsync('data/stop-words.json', 'utf-8'),
       );
       if (!req.body?.name || stopWords.includes(req.body.name.toLowerCase())) {
-        throw new HttpException(
-          `You should avoid using stop words in the name`,
-          HttpStatus.BAD_REQUEST,
+        throw new BadRequestException(
+          `You should avoid using stop words in a name!`,
         );
       }
 
       next();
     } catch (e) {
-      throw new HttpException(`${e.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+      handleError(e);
+
+      throw new InternalServerErrorException(`${e.message}`);
     }
   }
 }
