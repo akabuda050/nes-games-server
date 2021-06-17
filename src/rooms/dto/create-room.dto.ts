@@ -1,3 +1,6 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class CreateRoomDto {
-  name: string
+  @IsNotEmpty()
+  name: string;
 }

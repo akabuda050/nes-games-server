@@ -1,3 +1,10 @@
+import { IsNotEmpty } from 'class-validator';
+import { Exclude } from 'class-transformer';
+
 export class UpdateRoomDto {
-  name: string
+  @Exclude()
+  id: string;
+
+  @IsNotEmpty()
+  name: string;
 }
