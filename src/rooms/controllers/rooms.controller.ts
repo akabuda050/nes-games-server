@@ -30,14 +30,15 @@ export class RoomsController {
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createRoomDto: CreateRoomDto) {
     this.roomsService.create(createRoomDto);
   }
 
   @Put(':id')
-  @UsePipes(ValidationPipe)
+  @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id') id: string, @Body() updateRoomDto: UpdateRoomDto) {
+    console.log(updateRoomDto);
     this.roomsService.update(id, updateRoomDto);
   }
 
