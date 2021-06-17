@@ -5,10 +5,9 @@ import {
   NestMiddleware,
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
-import { readFile } from 'fs';
+import { readFileAsync } from 'src/helpers/file-system';
 import { handleError } from 'src/helpers/handle-errors';
-import { promisify } from 'util';
-const readFileAsync = promisify(readFile);
+
 
 @Injectable()
 export class StopWordsNameMiddleware implements NestMiddleware {
