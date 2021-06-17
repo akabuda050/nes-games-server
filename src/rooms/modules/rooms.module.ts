@@ -14,14 +14,12 @@ import { RoomsService } from '../services/rooms.service';
 })
 export class RoomsModule implements NestModule {
   async configure(consumer: MiddlewareConsumer) {
-    return (
-      await consumer
-        .apply(StopWordsNameMiddleware)
-        .forRoutes({ path: 'rooms', method: RequestMethod.POST }),
+    return await consumer.apply(StopWordsNameMiddleware).forRoutes(
+      { path: 'rooms', method: RequestMethod.POST },
       {
         path: 'rooms/:id',
         method: RequestMethod.PUT,
-      }
+      },
     );
   }
 }
