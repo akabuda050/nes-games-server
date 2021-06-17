@@ -18,7 +18,7 @@ export class StopWordsNameMiddleware implements NestMiddleware {
       const stopWords = JSON.parse(
         await readFileAsync('data/stop-words.json', 'utf-8'),
       );
-      if (!req.body?.name || stopWords.includes(req.body?.name)) {
+      if (!req.body?.name || stopWords.includes(req.body.name.toLowerCase())) {
         throw new HttpException(
           `You should aboid using stop words in the name`,
           HttpStatus.BAD_REQUEST,
