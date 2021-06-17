@@ -38,7 +38,6 @@ export class RoomsController {
   @Put(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id') id: string, @Body() updateRoomDto: UpdateRoomDto) {
-    console.log(updateRoomDto);
     this.roomsService.update(id, updateRoomDto);
   }
 
