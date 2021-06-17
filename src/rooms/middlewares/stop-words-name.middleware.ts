@@ -20,7 +20,7 @@ export class StopWordsNameMiddleware implements NestMiddleware {
       );
       if (!req.body?.name || stopWords.includes(req.body.name.toLowerCase())) {
         throw new HttpException(
-          `You should aboid using stop words in the name`,
+          `You should avoid using stop words in the name`,
           HttpStatus.BAD_REQUEST,
         );
       }

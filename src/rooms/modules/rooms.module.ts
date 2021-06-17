@@ -19,7 +19,7 @@ export class RoomsModule implements NestModule {
         .apply(StopWordsNameMiddleware)
         .forRoutes({ path: 'rooms', method: RequestMethod.POST }),
       {
-        path: 'rooms',
+        path: 'rooms/:id',
         method: RequestMethod.PUT,
       }
     );
