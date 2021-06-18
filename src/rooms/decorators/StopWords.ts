@@ -20,7 +20,7 @@ export class StopWordsConstraint implements ValidatorConstraintInterface {
     } catch (e) {
       handleError(e);
 
-      throw new InternalServerErrorException('Validating error!');
+      throw new InternalServerErrorException('Validation error!');
     }
   }
   defaultMessage(args: ValidationArguments) {
