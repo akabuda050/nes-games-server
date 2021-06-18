@@ -6,8 +6,8 @@ import {
   ValidatorConstraintInterface,
   ValidationArguments,
 } from 'class-validator';
-import { readFileAsync } from 'src/helpers/file-system';
-import { handleError } from 'src/helpers/handle-errors';
+import { readFileAsync } from '@src/helpers/file-system';
+import { handleError } from '@src/helpers/handle-errors';
 
 @ValidatorConstraint({ async: true })
 export class StopWordsConstraint implements ValidatorConstraintInterface {

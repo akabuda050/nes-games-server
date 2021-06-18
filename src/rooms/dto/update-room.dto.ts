@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 import { Exclude } from 'class-transformer';
-import { StopWords } from '../../decorators/StopWords';
+import { StopWords } from '@src/decorators/StopWords';
 
 export class UpdateRoomDto {
   @Exclude()

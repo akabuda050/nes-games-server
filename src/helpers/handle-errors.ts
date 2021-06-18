@@ -33,6 +33,7 @@ export const handleError = (error: Error): void => {
     ['Gone', GoneException],
     ['Http Version Not Supported', HttpVersionNotSupportedException],
     ['Payload Too Large', PayloadTooLargeException],
+    ['Precondition Failed Exception', PreconditionFailedException],
     ['Unsupported Media Type', UnsupportedMediaTypeException],
     ['Unprocessable Entity', UnprocessableEntityException],
     ['Internal Server Error', InternalServerErrorException],
