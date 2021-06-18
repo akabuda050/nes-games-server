@@ -1,8 +1,11 @@
 import { Exclude } from 'class-transformer';
 import { IsAlphanumeric, IsEmail } from 'class-validator';
-import { StopWords } from 'src/decorators/StopWords';
+import { StopWords } from '@src/decorators/StopWords';
 
-export class CreateUserDto {
+export class UpdateUserDto {
+  @Exclude()
+  id: string;
+
   @IsAlphanumeric()
   @StopWords()
   name: string;

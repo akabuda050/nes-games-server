@@ -11,10 +11,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateRoomDto } from '../dto/create-room.dto';
-import { UpdateRoomDto } from '../dto/update-room.dto';
-import { Room } from '../interfaces/room.interface';
-import { RoomsService } from '../services/rooms.service';
+import { CreateRoomDto } from '@src/rooms/dto/create-room.dto';
+import { UpdateRoomDto } from '@src/rooms/dto/update-room.dto';
+import { Room } from '@src/rooms/interfaces/room.interface';
+import { RoomsService } from '@src/rooms/services/rooms.service';
 const UUIDPipe = new ParseUUIDPipe({
   errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
 });

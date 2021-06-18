@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Room } from '../interfaces/room.interface';
+import { Room } from '@src/rooms/interfaces/room.interface';
 
 @Injectable()
 export class RoomsService {

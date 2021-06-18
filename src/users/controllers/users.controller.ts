@@ -11,10 +11,10 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
-import { User } from '../interfaces/user.interface';
-import { UsersService } from '../services/users.service';
+import { CreateUserDto } from '@src/users/dto/create-user.dto';
+import { UpdateUserDto } from '@src/users/dto/update-user.dto';
+import { User } from '@src/users/interfaces/user.interface';
+import { UsersService } from '@src/users/services/users.service';
 const UUIDPipe = new ParseUUIDPipe({
   errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
 });
