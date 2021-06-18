@@ -42,7 +42,6 @@ export const handleError = (error: Error): void => {
     ['Bad Gateway', BadGatewayException],
     ['Service Unavailable', ServiceUnavailableException],
     ['Gateway Timeout', GatewayTimeoutException],
-    ['Function', InternalServerErrorException],
   ]);
 
   const errors = new Map([['Error', Error]]);
