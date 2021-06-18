@@ -1,3 +1,4 @@
+import { InternalServerErrorException } from '@nestjs/common';
 import {
   registerDecorator,
   ValidationOptions,
@@ -6,14 +7,21 @@ import {
   ValidationArguments,
 } from 'class-validator';
 import { readFileAsync } from 'src/helpers/file-system';
+import { handleError } from 'src/helpers/handle-errors';
 
 @ValidatorConstraint({ async: true })
 export class StopWordsConstraint implements ValidatorConstraintInterface {
   async validate(value: string, args: ValidationArguments): Promise<boolean> {
-    const data = await readFileAsync('data/stop-words.json', 'utf-8');
+    try {
+      const data = await readFileAsync('data/stop-words.json', 'utf-8');
 
-    const stopWords = JSON.parse(data);
-    return !stopWords.includes(value.trim());
+      const stopWords = JSON.parse(data);
+      return !stopWords.includes(value.trim());
+    } catch (e) {
+      handleError(e);
+
+      throw new InternalServerErrorException('Validating error!');
+    }
   }
   defaultMessage(args: ValidationArguments) {
     // here you can provide default error message if validation failed

@@ -42,12 +42,20 @@ export const handleError = (error: Error): void => {
     ['Bad Gateway', BadGatewayException],
     ['Service Unavailable', ServiceUnavailableException],
     ['Gateway Timeout', GatewayTimeoutException],
-    ['Precondition Failed', PreconditionFailedException],
+    ['Function', InternalServerErrorException],
   ]);
+
+  const errors = new Map([['Error', Error]]);
 
   for (const exceptionType of exceptions.values()) {
     if (error instanceof exceptionType) {
       throw error;
+    }
+  }
+
+  for (const errorType of errors.values()) {
+    if (error instanceof errorType) {
+      throw new InternalServerErrorException(error.message);
     }
   }
 };
