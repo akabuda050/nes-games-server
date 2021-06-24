@@ -11,6 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { handleError } from '@src/helpers/handle-errors';
 import { CreateRoomDto } from '@src/rooms/dto/create-room.dto';
 import { UpdateRoomDto } from '@src/rooms/dto/update-room.dto';
 import { Room } from '@src/rooms/interfaces/room.interface';
@@ -25,7 +26,11 @@ export class RoomsController {
 
   @Get()
   async findAll(): Promise<Room[]> {
-    return this.roomsService.findAll();
+    try {
+      return await this.roomsService.findAll();
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Get(':id')
@@ -33,13 +38,21 @@ export class RoomsController {
     @Param('id', UUIDPipe)
     id: string,
   ): Promise<Room> {
-    return this.roomsService.findById(id);
+    try {
+      return await this.roomsService.findById(id);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createRoomDto: CreateRoomDto) {
-    this.roomsService.create(createRoomDto);
+    try {
+      return await this.roomsService.create(createRoomDto);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Put(':id')
@@ -49,7 +62,11 @@ export class RoomsController {
     id: string,
     @Body() updateRoomDto: UpdateRoomDto,
   ) {
-    this.roomsService.update(id, updateRoomDto);
+    try {
+      return await this.roomsService.update(id, updateRoomDto);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Delete(':id')
@@ -57,6 +74,10 @@ export class RoomsController {
     @Param('id', UUIDPipe)
     id: string,
   ) {
-    return this.roomsService.delete(id);
+    try {
+      return await this.roomsService.delete(id);
+    } catch (e) {
+      handleError(e);
+    }
   }
 }

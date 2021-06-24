@@ -11,6 +11,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { handleError } from '@src/helpers/handle-errors';
 import { CreateUserDto } from '@src/users/dto/create-user.dto';
 import { UpdateUserDto } from '@src/users/dto/update-user.dto';
 import { User } from '@src/users/interfaces/user.interface';
@@ -25,7 +26,11 @@ export class UsersController {
 
   @Get()
   async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+    try {
+      return await this.usersService.findAll();
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Get(':id')
@@ -33,13 +38,21 @@ export class UsersController {
     @Param('id', UUIDPipe)
     id: string,
   ): Promise<User> {
-    return this.usersService.findById(id);
+    try {
+      return await this.usersService.findById(id);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createUserDto: CreateUserDto) {
-    this.usersService.create(createUserDto);
+    try {
+      return await this.usersService.create(createUserDto);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Put(':id')
@@ -47,9 +60,13 @@ export class UsersController {
   async update(
     @Param('id', UUIDPipe)
     id: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() user: UpdateUserDto,
   ) {
-    this.usersService.update(id, updateUserDto);
+    try {
+      return await this.usersService.update(id, user);
+    } catch (e) {
+      handleError(e);
+    }
   }
 
   @Delete(':id')
@@ -57,6 +74,10 @@ export class UsersController {
     @Param('id', UUIDPipe)
     id: string,
   ) {
-    return this.usersService.delete(id);
+    try {
+      return await this.usersService.delete(id);
+    } catch (e) {
+      handleError(e);
+    }
   }
 }
