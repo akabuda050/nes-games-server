@@ -9,10 +9,8 @@ export class User implements UserInterface {
   public id: string;
 
   @Column()
-  @IsNotEmpty()
   public name: string;
 
   @Column()
-  @IsEmail()
   public email: string;
 }
